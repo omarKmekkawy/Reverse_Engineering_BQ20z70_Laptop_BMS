@@ -114,7 +114,77 @@ The connection diagram:
 <img src="./Pictures/Connection Diagram.jpg" width="765" height="397">
 
 
+# Sniffing the BQ20z70's protocol ( The Dump Way )
+The logic analyzer is one of the most useful tools. Its simply sniffs the communication protocol, decodes it, and record it. I have connected the logic analyzer inline with the EV2300 and the BMS like the picture above, after that I have installed the [evaluation software for the BQ20z70](https://www.ti.com/lit/zip/sluc105) it works (on Windows7 and earlier versions).
 
+I have opened the software, it has identified the BMS without any problems and we got lots of information regarding the BQ20z70 BMS.
+<img src="./Pictures/BQ_Evaluation_Software_1.png" width="765" height="397">
+Press the (+) buttons and choose I2C
+
+This image shows all the registers of the BQ20z70, We will read each register separately using the logic analyzer and analyze it using the logic analyzer, after that we will link those information with the already readed value using the evaluation software.
+
+## Preparing The Logic Analyzer To Capture SMBus
+Here are the settings for setting the Logic analyzer, press the (+) button and choose I2C
+<img src="./Pictures/Logic_Analyzer_Adding_I2C_Analyzer.jpg" width="241" height="210">
+
+The following window will appear, choose the correct channels.
+I have connected the logic analyzer as follows:
+
+<img src="./Pictures/Logic_Analyzer_I2C_Analyzer_Settings.jpg" width="450" height="175">
+
+| Logic Analyzer's Pin Number | Logic Analyzer | BQ20z70 BMS  |
+| ------------- | ------------- | ------------- |
+| 1  | Channel 0  | SMBus_Data |
+| 2  | Channel 1  | SMBus_Clock  |
+| 3  | Channel 2  | Not Connected  |
+| 4  | Channel 3  | Not Connected  |
+| 5  | Channel 4  | Not Connected  |
+| 6  | Channel 5  | Not Connected |
+| 7  | Channel 6  | Not Connected  |
+| 8  | Channel 7  | Not Connected  |
+| 9  | GND  | GND  |
+| 10  | GND  | Not Connected  |
+
+After that we will choose the **[Falling Edge Triggering]** for the Clock's pin
+
+<img src="./Pictures/Logic_Analyzer_I2C_Clock_Trigger.jpg" width="771" height="385">
+
+Press Start, the logic analyzer will wait for the the clock signal to be low ( Reveived SMBus Data).
+
+<img src="./Pictures/Logic_Analyzer_Waiting_For_Trigger.jpg" width="300" height="207">
+
+Example:
+
+We will scan the voltage reading by putting the **[✓]** mark on the voltage only and press **[Refresh]**
+
+<img src="./Pictures/Choose_The_Voltage_Evaluation_Software.jpg" width="1000" height="204">
+
+The logic analyzer will get the captured Data:
+<img src="./Pictures/Sniffed_Voltage_Reading_Zoomed.jpg" width="1000" height="396">
+
+Also we will get the voltage reading on the program:
+
+<img src="./Pictures/Reading_Voltage.jpg" width="310" height="157">
+
+After analyzing the SMBus Frame, we will got the following result:
+<img src="./Pictures/Comparing_The_Results.jpg" width="1000" height="396">
+
+```
+The BQ20z70's Address is: 0x0B.
+The Battery Pack's Voltage register Address is: 0x09 (See the following section for more info).
+The readed voltage in the BQ Evaluation Software -> Voltage = Dec(12293mV) = Hex(0x3005).
+```
+
+Here is the captured data ( you could open it using [Saleae Logic 1.2.18](https://downloads.saleae.com/logic/1.2.18/Logic+Setup+1.2.18.exe) )
+
+* [Reading Voltage Register 0x09](SMBus_Capture\Reading_Voltage_Register_0x09\Reading_Voltage_Register_0x09.logicdata)
+
+# BQ20z70 Registers
+After reading the datasheet and lots of files regarding the BQ20z70. I have found that the BQ20z70 contains registers that could be read/Written through SMBus Commands, they are well explained in **[page 47]** in [bq20z70-V160 + bq29330, bq20z75 Technical Reference Manual](https://www.ti.com/lit/er/sluu265a/sluu265a.pdf) PDF file, we will go through them quickly later.
+
+The most important table for us at **[page 67 and 68]**, it shows us the register's name, it's address, it's format, and it's units.
+<img src="./Pictures/SBS_Commands_Table.jpg" width="1000" height="1500">
+We will use this table for writing our code.
 # Project Status
 * Documenting the project (Current task, Not completed yet).
 
@@ -126,9 +196,11 @@ Check the [BQ20z70](https://www.ti.com/product/BQ20Z70-V160) product's page.
 * [Data Flash Programing and Calibrating the bq20zxx Family of Gas Gauges (Rev. E)](https://www.ti.com/lit/pdf/slua379)
 * [Battery Pack Production Flow With bq20zXX](https://www.ti.com/lit/pdf/slua391)
 * [Quick-Start Guide for bq20zxx Family Gas Gauges (Rev. A)](https://www.ti.com/lit/pdf/slua421)
+* [BQ20z70 and BQ20z90 Application Book](https://www.ti.com/seclit/an/slua404/slua404.pdf)
 
 ## User Guide
 * [bq20z70-V160 + bq29330, bq20z75 TRM](https://www.ti.com/lit/pdf/sluu310)
+* [bq20z70-V160 + bq29330, bq20z75 Technical Reference Manual](https://www.ti.com/lit/er/sluu265a/sluu265a.pdf)
 # Support Me
 If you seen my work and it helped you, please support me on LinkedIn by endorsing my skills. It will be appreciated :grinning:.
 <p>
