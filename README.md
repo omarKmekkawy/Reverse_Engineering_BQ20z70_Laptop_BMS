@@ -177,7 +177,7 @@ The readed voltage in the BQ Evaluation Software -> Voltage = Dec(12293mV) = Hex
 
 Here is the captured data ( you could open it using [Saleae Logic 1.2.18](https://downloads.saleae.com/logic/1.2.18/Logic+Setup+1.2.18.exe) )
 
-* [Reading Voltage Register 0x09](SMBus_Capture\Reading_Voltage_Register_0x09\Reading_Voltage_Register_0x09.logicdata)
+* [Reading Voltage Register 0x09](SMBus_Capture/Reading_Voltage_Register_0x09/Reading_Voltage_Register_0x09.logicdata)
 
 # BQ20z70 Registers
 After reading the datasheet and lots of files regarding the BQ20z70. I have found that the BQ20z70 contains registers that could be read/Written through SMBus Commands, they are well explained in **[page 47]** in [bq20z70-V160 + bq29330, bq20z75 Technical Reference Manual](https://www.ti.com/lit/er/sluu265a/sluu265a.pdf) PDF file, we will go through them quickly later.
