@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1630693991 source:c:\users\black\desktop\crc_calculation\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+
