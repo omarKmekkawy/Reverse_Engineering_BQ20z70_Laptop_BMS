@@ -182,11 +182,12 @@ Here is the captured data ( you could open it using [Saleae Logic 1.2.18](https:
 
 # Calculating the CRC
 As we saw earlier, the BQ20z70 supports CRC as a Packet Error Checking (PEC) mechanism for SMBus frames. Its simply applies the following equation for calculating the CRC:
+
 <img src="./Pictures/CRC_Equation.jpg" width="384" height="42">
 
 I have found a C code [here](https://stackoverflow.com/questions/57923291/finding-polynomial-used-in-crc-8-calculation-table) for calculating the CRC, it could be used later in our code.
 
-* [CRC_Calculation](CRC_Calculation)
+* [CRC_Calculation](CRC_Calculation) The CRC calculation code.
 
 ```C
 #include <stdio.h>
