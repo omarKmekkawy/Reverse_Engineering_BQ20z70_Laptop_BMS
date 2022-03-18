@@ -270,6 +270,16 @@ By running the previous example we get:
 <img src="./Pictures/CRC_Calculation_Example.jpg" width="979" height="512">
 
 The calculated CRC is the same compared with the CRC value in the [Reading Voltage Register 0x09](SMBus_Capture/Reading_Voltage_Register_0x09/Reading_Voltage_Register_0x09.logicdata) capture.
+
+
+
+# Security of the BQ20z70
+Unfortunately, one of the most **"annoying"** features of the BMS IC is that its protected "Sealed" with a 32bit key. Usually its sealed during the production 
+
+In the following README file I will talk about the security part in details and **I might later try brute force attacking techniques to crack it**
+
+* [Security documentation](./Security/README.md)
+
 # BQ20z70 Registers
 After reading the datasheet and lots of files regarding the BQ20z70. I have found that the BQ20z70 contains registers that could be read/Written through SMBus Commands, they are well explained in **[page 47]** in [bq20z70-V160 + bq29330, bq20z75 Technical Reference Manual](https://www.ti.com/lit/er/sluu265a/sluu265a.pdf) PDF file, we will go through them quickly later.
 
