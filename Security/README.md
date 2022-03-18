@@ -20,7 +20,7 @@ Simply, the **OperationStatus(0x54)** register contains the security status bits
 <img src="./Pictures/OperationStatus_Sealed_Value.png" width="282" height="21">
 
 Sniffing the SMBus when Reading the **OperationStatus(0x54)** register:
-<img src="./Pictures/OperationStatus_Sniffing.png" width="1383" height="171">
+* [Recorded logic analyzer's data](./DataCaptures/OperationStatus_Capture.logicdata)
 
 refer to the [Calculating The CRC](../README.md#calculating-the-crc) section for more details.
 
