@@ -25,6 +25,7 @@ Sniffing the SMBus when Reading the **OperationStatus(0x54)** register:
 refer to the [Calculating The CRC](../README.md#calculating-the-crc) section for more details.
 
 The register mapping:
+
 <img src="./Pictures/OperationStatus_Sealed.png" width="500" height="100">
 
 The bits status **Red = 1**, **Green = 0**
@@ -54,6 +55,7 @@ Then, the Word2 is sent after Word1 (0x3672)
 Once we send the command, We notice that the SS bit **SS=0** which means that the BMS is unsealed **(Fortunately the manufacturer used the default sealing keys from TI)**
 
 Now, we send the full access command according to (page 20).
+
 <img src="./Pictures/FullAcess_Command.png" width="518" height="230">
 
 The Word1 is sent first (0xffff)
